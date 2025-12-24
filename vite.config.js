@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-    base: '/santaMario/',
+    base: './santaMario/',
     build: {
         outDir: 'dist'
     }
