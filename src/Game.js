@@ -54,8 +54,9 @@ export default class Game {
         // Load Assets
         try {
             this.assets = {};
-            this.assets.santa = await SpriteLoader.load('/assets/images/santa.png');
-            this.assets.tile = await SpriteLoader.load('/assets/images/tile.png');
+            const basePath = import.meta.env.BASE_URL || '/';
+            this.assets.santa = await SpriteLoader.load(`${basePath}assets/images/santa.png`);
+            this.assets.tile = await SpriteLoader.load(`${basePath}assets/images/tile.png`);
             // Placeholder for gift if I had one, or just use code
         } catch (e) {
             console.error("Failed to load assets", e);
