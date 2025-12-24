@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Santa Mario - Holiday Platformer</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div id="game-container">
+    <canvas id="game-canvas"></canvas>
+
+    <div id="ui-layer">
+      <div id="hud" class="hidden">
+        <div id="score-display">Score: 0</div>
+        <div id="time-display">Time: 00:00</div>
+        <div id="lives-display">❤️❤️❤️</div>
+      </div>
+
+      <div id="start-screen" class="interactive-ui">
+        <h1>Santa Mario</h1>
+        <p>Help Santa collect gifts and save Christmas!</p>
+        <button id="start-btn">Start Game</button>
+        <div style="margin-top: 20px; font-size: 0.8em; opacity: 0.8;">
+          Arrow Keys to Move • Space to Jump
+        </div>
+      </div>
+
+      <div id="game-over-screen" class="interactive-ui hidden">
+        <h1 id="game-over-title">Game Over</h1>
+        <p id="final-score">Score: 0</p>
+        <button id="restart-btn">Try Again</button>
+      </div>
+
+      <div id="controls-overlay">
+        <div class="controls-left">
+          <div class="touch-btn" id="btn-left">←</div>
+          <div class="touch-btn" id="btn-right">→</div>
+        </div>
+        <div class="controls-right">
+          <div class="touch-btn" id="btn-shoot" style="background:rgba(255,0,0,0.3)">❄</div>
+          <div class="touch-btn" id="btn-slide">⬇</div>
+          <div class="touch-btn" id="btn-jump">↟</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
