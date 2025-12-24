@@ -93,6 +93,17 @@ export default class Game {
         this.updateHealth(3);
         this.victoryMode = false;
         this.gameOver = false;
+        
+        // Timer setup
+        this.gameTime = 0;
+        this.updateTimer();
+        if (this.timerInterval) clearInterval(this.timerInterval);
+        this.timerInterval = setInterval(() => {
+            if (!this.gameOver && !this.victoryMode) {
+                this.gameTime++;
+                this.updateTimer();
+            }
+        }, 1000);
         this.currentLevel = new Level(level1, this.assets);
 
         // Parse gifts from Level Data (which are just {x,y} objects) into Entities
@@ -249,6 +260,12 @@ export default class Game {
     updateScore(s) {
         document.getElementById('score-display').innerText = `Score: ${s}`;
     }
+    
+    updateTimer() {
+        const mins = Math.floor(this.gameTime / 60).toString().padStart(2, '0');
+        const secs = (this.gameTime % 60).toString().padStart(2, '0');
+        document.getElementById('time-display').innerText = `Time: ${mins}:${secs}`;
+    }
 
     updateHealth(h) {
         document.getElementById('lives-display').innerText = "❤️".repeat(h);
@@ -296,11 +313,12 @@ export default class Game {
 
     winGame() {
         this.victoryMode = true; // Loop fireworks
+        if (this.timerInterval) clearInterval(this.timerInterval);
         // Delay Game over screen for effect
         setTimeout(() => {
             this.gameOver = true;
             this.audio.playWin();
-            document.getElementById('game-over-title').innerText = "V I C T O R Y !";
+            document.getElementById('game-over-title').innerText = "You found a way to escape!";
             document.getElementById('final-score').innerText = `Final Score: ${this.score}`;
             document.getElementById('game-over-screen').classList.remove('hidden');
             document.getElementById('hud').classList.add('hidden');
